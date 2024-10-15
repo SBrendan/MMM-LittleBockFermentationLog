@@ -1,0 +1,29 @@
+{
+    "name": "mmm-littlebockfermentationlog",
+    "version": "1.0.0",
+    "description": "MagicMirror² module to get real-time Air Quality Index (AQI).",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SBrendan/MMM-LittleBockFermentationLog"
+    },
+    "keywords": [
+        "magic mirror",
+        "smart mirror",
+        "transport",
+        "air",
+        "AQI",
+        "module"
+    ],
+    "author": "Brendan Seiller",
+    "contributors": [
+        "https://github.com/SBrendan/MMM-LittleBockFermentationLog/graphs/contributors"
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/SBrendan/MMM-LittleBockFermentationLog/issues"
+    },
+    "homepage": "https://github.com/SBrendan/MMM-LittleBockFermentationLog#readme",
+    "dependencies": {
+        "node-cache": "^5.1.2"
+    }
+}

@@ -1,0 +1,64 @@
+#fermentationChart {
+    flex: 0 1 60%;
+    max-width: 500px;
+    height: 300px;
+    margin: 10px 20px; 
+}
+
+.info-container.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 8em);
+    grid-template-rows: repeat(2, 5em);
+    gap: 10px;
+    height: 100%;
+    align-items: stretch;
+}
+
+.info-container.horizontal-layout {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    width: 5em;
+}
+
+#fermentationChart {
+    flex: 1;
+    max-width: 500px;
+    height: 300px;
+}
+
+.littlebock-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 0 auto;
+    width: auto;
+    max-width: 100%;
+}
+
+.info-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ffffff;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #00bfff;
+    border-radius: 8px;
+    margin: 5px;
+    flex: 1;
+}
+
+.info-card .label {
+    font-size: 12px;
+    color: #cccccc;
+    margin-top: 5px;
+}
+
+.info-card .value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00bfff;
+}
