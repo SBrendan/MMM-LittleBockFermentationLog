@@ -62,3 +62,10 @@
     font-weight: bold;
     color: #00bfff;
 }
+
+
+
+.no-data-image {
+    width: 150px;
+    height: 150px;
+}
