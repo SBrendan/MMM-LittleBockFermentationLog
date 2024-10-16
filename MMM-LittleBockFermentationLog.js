@@ -22,7 +22,7 @@ Module.register("MMM-LittleBockFermentationLog", {
         apiUrl: "https://www.littlebock.fr/api",
         brewSessionID: "",
         animationSpeed: 500,
-        layout: "cardsOnly",  // "horizontal" or "cardsOnly"
+        layout: "cardsOnly",  
     },
 
     start () {
@@ -78,7 +78,6 @@ Module.register("MMM-LittleBockFermentationLog", {
         }
 
         if (notification === "MMM-LittleBockFermentationLog_RECIPE_DATA_RESULT") {
-            console.log(payload)
             this.recipeData = payload
             this.updateDom(this.config.animationSpeed);
             domReady('#fermentationChart').then(() => {
@@ -265,7 +264,6 @@ Module.register("MMM-LittleBockFermentationLog", {
 
     calculateAttenuation() {
         const initialGravity = Number(this.getInitialGravity());
-        console.log(initialGravity)
         const finalGravity = this.getCurrentGravity();
         if (initialGravity && finalGravity && initialGravity > 1) {
             const attenuation = ((initialGravity - finalGravity) / (initialGravity - 1)) * 100;
@@ -275,7 +273,6 @@ Module.register("MMM-LittleBockFermentationLog", {
     },
 
     getInitialGravity() {
-        console.log(this.recipeData)
         return this.recipeData["estOG"];
     },
     
