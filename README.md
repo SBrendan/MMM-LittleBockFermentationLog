@@ -21,14 +21,13 @@ git clone https://github.com/SBrendan/MMM-LittleBockFermentationLog
 
 Vous pouvez ajouter le module dans le fichier `config.js` de MagicMirror avec les options suivantes :
 
-| Option             | Description                                                                                                                                                                                                                  |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `apiToken`         | **Obligatoire**. Votre token d'API Little Bock. <br> **Type**: `string`                                                                                                                                                       |
-| `brewSessionID`    | **Obligatoire**. L'ID de la session de brassage à afficher. <br> **Type**: `string`                                                                                                                                           |
-| `updateInterval`   | Intervalle de mise à jour des données en millisecondes. <br> **Type**: `integer` <br> **Valeur par défaut**: `3600000` (1 heure)                                                                                              |
-| `animationSpeed`   | Vitesse de l'animation lors de la mise à jour des informations. <br> **Type**: `integer` <br> **Valeur par défaut**: `1000` (1 seconde)                                                                                       |
-| `layout`           | Choix de l'agencement des éléments (graphique et cartes). <br> **Type**: `string` <br> **Valeurs possibles**: `"cardsOnly"`, `"horizontal"` <br> **Valeur par défaut**: `"horizontal"`                           |
-| `visible`          | Affiche ou masque le module. <br> **Type**: `boolean` <br> **Valeur par défaut**: `true`                                                                                                                                       |
+| Option             | Valeur par défaut   | Description                                                                                                                                                                                                |
+| ------------------ | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `apiToken`         | `""`                | **Obligatoire**. Votre token d'API Little Bock. <br> **Type**: `string`                                                                                                                                    |
+| `brewSessionID`    | `0`                 | **Obligatoire**. L'ID de la session de brassage à afficher. <br> **Type**: `string`                                                                                                                        |
+| `updateInterval`   | `3600000` (1 heure) | Intervalle de mise à jour des données en millisecondes. <br> **Type**: `integer` <br>                                                                                                                      |
+| `animationSpeed`   | `1000`              | Vitesse de l'animation lors de la mise à jour des informations. <br> **Type**: `integer` <br>                                                                                                              |
+| `layout`           | `"horizontal"`      | Choix de l'agencement des éléments (graphique et cartes). <br> **Type**: `string` <br> **Valeurs possibles**: `"cardsOnly"`, `"horizontal"` <br>                                                           |
 
 ### Exemple de configuration dans `config.js`
 
@@ -41,9 +40,8 @@ Vous pouvez ajouter le module dans le fichier `config.js` de MagicMirror avec le
         brewSessionID: "57094",
         updateInterval: 60 * 60 * 1000, // Mise à jour toutes les heures
         animationSpeed: 1000, // 1 seconde
-        layout: "horizontal", // Choix du layout : cardsOnly, vertical ou horizontal
-        visible: true
-    }
+        layout: "horizontal", // Choix du layout : cardsOnly, horizontal
+}
 },
 ```
 

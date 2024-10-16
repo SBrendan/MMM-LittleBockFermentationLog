@@ -23,7 +23,6 @@ Module.register("MMM-LittleBockFermentationLog", {
         brewSessionID: "",
         animationSpeed: 500,
         layout: "cardsOnly",  // "horizontal" or "cardsOnly"
-        visible: true  
     },
 
     start () {
@@ -33,10 +32,6 @@ Module.register("MMM-LittleBockFermentationLog", {
         this.getDataFromLittleBockAPI();
         this.getReceipeDataFromLittleBockAPI();
         this.scheduleUpdate();
-
-        if (!this.config.visible) {
-            this.hidden = true
-        }
     },
 
     getHeader () {
@@ -79,7 +74,7 @@ Module.register("MMM-LittleBockFermentationLog", {
             domReady('#fermentationChart').then(() => {
                 this.renderChart();
             });
-            this.loaded = true;
+            this.isBothLoaded();
         }
 
         if (notification === "MMM-LittleBockFermentationLog_RECIPE_DATA_RESULT") {
@@ -89,7 +84,13 @@ Module.register("MMM-LittleBockFermentationLog", {
             domReady('#fermentationChart').then(() => {
                 this.renderChart();
             });
-            this.loaded = true;
+            this.isBothLoaded();
+        }
+    },
+
+    isBothLoaded() {
+        if (this.recipeData && this.brewData) {
+            this.loaded = true
         }
     },
 
@@ -105,7 +106,20 @@ Module.register("MMM-LittleBockFermentationLog", {
     
         
         if (this.brewData.length === 0) {
-            wrapper.innerHTML = "Aucune donnée de fermentation disponible.";
+            const messageContainer = document.createElement("div");
+            messageContainer.className = "no-data-container";
+            
+            const message = document.createElement("p");
+            message.innerText = "Aucune donnée de fermentation disponible.";
+            messageContainer.appendChild(message);
+            
+            const img = document.createElement("img");
+            img.src = "./modules/MMM-LittleBockFermentationLog/images/biere.png";
+            img.alt = "Aucune donnée disponible";
+            img.className = "no-data-image";
+            messageContainer.appendChild(img);
+            
+            wrapper.appendChild(messageContainer);
             return wrapper;
         }
     
