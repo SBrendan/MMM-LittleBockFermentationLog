@@ -177,6 +177,11 @@ Module.register("MMM-LittleBockFermentationLog", {
             yGravity: parseFloat(item.gravity)
         }));
 
+        const valuesToDrawLinesAt = [
+            {value: this.getInitialGravity(), color: "green", lineWidth: 2, lineDash: [5, 5], text: "DI" },
+            {value: this.getFinaleGravity(), color: "red",  lineWidth: 2, lineDash: [5, 5], text: "DF" },
+        ]
+
         new Chart(ctx, {
             type: 'line',
             data: {
@@ -212,9 +217,6 @@ Module.register("MMM-LittleBockFermentationLog", {
                             displayFormats: {
                                 day: 'DD MMM' 
                             }
-                        },
-                        ticks: {
-                            maxTicksLimit: 10 
                         }
                     }],
                     yAxes: [
@@ -225,18 +227,52 @@ Module.register("MMM-LittleBockFermentationLog", {
                             scaleLabel: {
                                 display: true,
                                 labelString: 'Température (°C)'
-                            }
+                            },
+                            ticks: {
+                                stepSize: 4
+                            },
                         },
                         {
                             id: 'y-density',
+                            min: 1.000,
                             type: 'linear',
                             position: 'left',
                             scaleLabel: {
                                 display: true,
                                 labelString: 'Densité'
-                            }
+                            },
+                            ticks: {
+                                stepSize: 0.04
+                            },
                         }
                     ]
+                }
+            },
+            plugins: {
+                beforeDraw: function(chart) {
+
+                    const ctx = chart.ctx;
+                    const yScale = chart.scales['y-density'];
+            
+                    ctx.save();
+                    ctx.font = '12px Arial';
+
+                    valuesToDrawLinesAt.forEach(item => {
+                        if (item.value) {
+                            const yPos = yScale.getPixelForValue(item.value);
+                            ctx.fillStyle = item.color;
+                            ctx.strokeStyle = item.color;
+                            ctx.lineWidth = item.lineWidth;
+                            ctx.setLineDash(item.lineDash);
+                            ctx.fillText(item.text, chart.chartArea.left + 5, yPos - 5);
+                            ctx.beginPath();
+                            ctx.moveTo(chart.chartArea.left, yPos);
+                            ctx.lineTo(chart.chartArea.right, yPos);
+                            ctx.stroke();
+                        }
+                    });
+            
+                    ctx.restore();
                 }
             }
         });
@@ -274,6 +310,10 @@ Module.register("MMM-LittleBockFermentationLog", {
 
     getInitialGravity() {
         return this.recipeData["estOG"];
+    },
+
+    getFinaleGravity() {
+        return this.recipeData["estFG"];
     },
     
     getCurrentGravity() {
