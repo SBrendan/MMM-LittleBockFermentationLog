@@ -1,0 +1,9 @@
+{
+    "TITLE": "Log fermentation pour recette",
+    "LOADING": "Chargement des données...",
+    "NO_DATA": "Aucune donnée disponible.",
+    "TEMPERATURE": "Température (°C)",
+    "GRAVITY": "Densité (S.G)",
+    "ATTENUATION": "Atténuation",
+    "ALCOOL": "Alcool"
+}
