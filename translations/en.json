@@ -1,0 +1,9 @@
+{
+    "TITLE": "Fermentation log for recipe",
+    "LOADING": "Loading data...",
+    "NO_DATA": "No data found.",
+    "TEMPERATURE": "Temperature (°C)",
+    "GRAVITY": "Gravity (S.G)",
+    "ATTENUATION": "Attenuation",
+    "ALCOOL": "Alcool"
+}

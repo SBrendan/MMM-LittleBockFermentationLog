@@ -16,7 +16,6 @@ function domReady(selector) {
 
 Module.register("MMM-LittleBockFermentationLog", {
     defaults: {
-        moduleTitle: "Suivi de Fermentation",
         updateInterval: 60 * 60 * 1000,
         apiToken: "", 
         apiUrl: "https://www.littlebock.fr/api",
@@ -34,9 +33,16 @@ Module.register("MMM-LittleBockFermentationLog", {
         this.scheduleUpdate();
     },
 
+    getTranslations: function() {
+        return {
+            fr: "translations/fr.json",
+            en: "translations/en.json",
+        }
+    },
+
     getHeader () {
         if (this.loaded && this.recipeData.name) {
-            return "Log fermentation pour recette " + this.recipeData.name;
+            return `${this.translate("TITLE")} ${this.recipeData.name}`;
         }
         return this.data.header;
     },
@@ -70,7 +76,6 @@ Module.register("MMM-LittleBockFermentationLog", {
         if (notification === "MMM-LittleBockFermentationLog_FERMENTATION_DATA_RESULT") {
             this.brewData = payload;
             this.updateDom(this.config.animationSpeed);
-
             domReady('#fermentationChart').then(() => {
                 this.renderChart();
             });
@@ -99,7 +104,7 @@ Module.register("MMM-LittleBockFermentationLog", {
         wrapper.className = "littlebock-container";
         
         if (!this.loaded || !this.brewData) {
-            wrapper.innerHTML = "Chargement des données...";
+            wrapper.innerHTML = this.translate("LOADING");
             return wrapper;
         }
     
@@ -109,12 +114,12 @@ Module.register("MMM-LittleBockFermentationLog", {
             messageContainer.className = "no-data-container";
             
             const message = document.createElement("p");
-            message.innerText = "Aucune donnée de fermentation disponible.";
+            message.innerText = this.translate("NOT_FOUND");
             messageContainer.appendChild(message);
             
             const img = document.createElement("img");
             img.src = "./modules/MMM-LittleBockFermentationLog/images/biere.png";
-            img.alt = "Aucune donnée disponible";
+            img.alt = this.translate("NOT_FOUND");
             img.className = "no-data-image";
             messageContainer.appendChild(img);
             
@@ -147,10 +152,10 @@ Module.register("MMM-LittleBockFermentationLog", {
         const infoContainer = document.createElement("div");
         infoContainer.className = "info-container";
     
-        const currentTemp = this.createInfoCard("Température", this.getCurrentTemp() + "°" || "N/A");
-        const alcohol = this.createInfoCard("Alcool", Math.floor(this.calculateAlcohol()) + "%" || "N/A");
-        const gravity = this.createInfoCard("Densité", this.getCurrentGravity() || "N/A");
-        const attenuation = this.createInfoCard("Atténuation", this.calculateAttenuation() + "%" || "N/A");
+        const currentTemp = this.createInfoCard(this.translate("TEMPERATURE"), this.getCurrentTemp() + "°" || "N/A");
+        const alcohol = this.createInfoCard(this.translate("ALCOOL"), Math.floor(this.calculateAlcohol()) + "%" || "N/A");
+        const gravity = this.createInfoCard(this.translate("GRAVITY"), this.getCurrentGravity() || "N/A");
+        const attenuation = this.createInfoCard(this.translate("ATTENUATION"), this.calculateAttenuation() + "%" || "N/A");
     
         infoContainer.appendChild(currentTemp);
         infoContainer.appendChild(alcohol);
@@ -164,7 +169,7 @@ Module.register("MMM-LittleBockFermentationLog", {
     renderChart() {
         const canvas = document.getElementById('fermentationChart');
         if (!canvas) {
-            console.error("Canvas non trouvé pour le graphique.");
+            console.error("Canvas not found for chart");
             return;
         }
 
@@ -181,13 +186,12 @@ Module.register("MMM-LittleBockFermentationLog", {
             {value: this.getInitialGravity(), color: "green", lineWidth: 2, lineDash: [5, 5], text: "DI" },
             {value: this.getFinaleGravity(), color: "red",  lineWidth: 2, lineDash: [5, 5], text: "DF" },
         ]
-
         new Chart(ctx, {
             type: 'line',
             data: {
                 datasets: [
                     {
-                        label: "Température",
+                        label: this.translate("TEMPERATURE"),
                         data: formattedData.map(item => ({ x: item.x, y: item.yTemp })),
                         borderColor: "blue",
                         backgroundColor: "rgba(0,0,255,0.1)",
@@ -197,7 +201,7 @@ Module.register("MMM-LittleBockFermentationLog", {
                         pointRadius: 0
                     },
                     {
-                        label: "Densité",
+                        label: this.translate("GRAVITY"),
                         data: formattedData.map(item => ({ x: item.x, y: item.yGravity })),
                         borderColor: "green",
                         backgroundColor: "rgba(0,255,0,0.1)",
@@ -226,7 +230,7 @@ Module.register("MMM-LittleBockFermentationLog", {
                             position: 'right',
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Température (°C)'
+                                labelString: this.translate("TEMPERATURE")
                             },
                             ticks: {
                                 stepSize: 4
@@ -239,7 +243,7 @@ Module.register("MMM-LittleBockFermentationLog", {
                             position: 'left',
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Densité'
+                                labelString: this.translate("GRAVITY")
                             },
                             ticks: {
                                 stepSize: 0.04
