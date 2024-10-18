@@ -1,7 +1,7 @@
 {
     "name": "mmm-littlebockfermentationlog",
     "version": "1.0.0",
-    "description": "MagicMirror² module to get real-time Air Quality Index (AQI).",
+    "description": "MagicMirror² module to display the fermentation log from LittleBock.",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/SBrendan/MMM-LittleBockFermentationLog"
@@ -9,10 +9,11 @@
     "keywords": [
         "magic mirror",
         "smart mirror",
-        "transport",
-        "air",
-        "AQI",
-        "module"
+        "beer",
+        "brew",
+        "littlebock",
+        "module",
+        "smart home"
     ],
     "author": "Brendan Seiller",
     "contributors": [
