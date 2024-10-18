@@ -68,9 +68,9 @@ Le module utilise un système de cache pour éviter de dépasser la limite de 15
 **MMM-LittleBockFermentationLog** is a module for [MagicMirror²](https://github.com/MichMich/MagicMirror) that displays beer brewing fermentation tracking using the Little Bock API.
 
 ### Horizontal Layout
-![Horizontal Layout](screenshots/screenshot_1.png)
+![Horizontal Layout](screenshots/screenshot_1_en.png)
 ### CardsOnly Layout
-![CardsOnly Layout](screenshots/screenshot_2.png)
+![CardsOnly Layout](screenshots/screenshot_2_en.png)
 
 ## Installation
 
