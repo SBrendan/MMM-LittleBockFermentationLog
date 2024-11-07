@@ -114,12 +114,12 @@ Module.register("MMM-LittleBockFermentationLog", {
             messageContainer.className = "no-data-container";
             
             const message = document.createElement("p");
-            message.innerText = this.translate("NOT_FOUND");
+            message.innerText = this.translate("NO_DATA");
             messageContainer.appendChild(message);
             
             const img = document.createElement("img");
             img.src = "./modules/MMM-LittleBockFermentationLog/images/biere.png";
-            img.alt = this.translate("NOT_FOUND");
+            img.alt = this.translate("NO_DATA");
             img.className = "no-data-image";
             messageContainer.appendChild(img);
             
